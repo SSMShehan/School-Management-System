@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, Boolean, DateTime
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
 from datetime import datetime
@@ -8,7 +9,7 @@ from ..database import Base
 class Branch(Base):
     __tablename__ = "branches"
 
-    branch_id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    branch_id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = Column(String, nullable=False, unique=True)
     location = Column(String, nullable=True)
     is_active = Column(Boolean, default=True, nullable=False)

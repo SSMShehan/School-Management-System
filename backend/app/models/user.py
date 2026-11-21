@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, Enum, ForeignKey
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
 import enum
@@ -20,7 +21,7 @@ class User(Base):
     role = Column(Enum(UserRole), nullable=False)
     
     # Multi-branch support (nullable for admin who can access all branches)
-    branch_id = Column(String(36), ForeignKey("branches.branch_id"), nullable=True)
+    branch_id = Column(UUID(as_uuid=True), ForeignKey("branches.branch_id"), nullable=True)
 
     # Relationships
     branch = relationship("Branch", back_populates="users")
