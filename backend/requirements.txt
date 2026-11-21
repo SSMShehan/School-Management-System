@@ -5,6 +5,8 @@ alembic
 psycopg2-binary
 psycopg[binary]
 pydantic
+pydantic[email]
+email-validator
 pydantic-settings
 python-jose[cryptography]
 passlib[argon2]
